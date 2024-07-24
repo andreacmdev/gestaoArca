@@ -1,0 +1,25 @@
+{
+  "name": "gestaoarca",
+  "version": "1.0.0",
+  "description": "Aplicacao criada para controle de presenca do DA",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dedev",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.1"
+  },
+  "devDependencies": {
+    "cli": "^1.0.1",
+    "eslint": "^8.32.0",
+    "nodemon": "^2.0.15"
+  }
+}

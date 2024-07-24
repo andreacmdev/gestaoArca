@@ -1,0 +1,11 @@
+{
+  "name": "gestaoarca",
+  "version": "1.0.0",
+  "description": "Aplicacao criada para controle de presenca do DA",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dedev",
+  "license": "ISC"
+}
