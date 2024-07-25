@@ -3,11 +3,19 @@ const Adolescente = require('../models/Adolescente');
 // Criar um novo adolescente
 exports.create = async (req, res) => {
   try {
-    const novoAdolescente = new Adolescente(req.body);
+    const { nome, telefone, departamento } = req.body;
+
+    // Valida os dados de entrada
+    if (!nome || !telefone || !departamento) {
+      return res.status(400).json({ message: 'Todos os campos são obrigatórios.' });
+    }
+
+    const novoAdolescente = new Adolescente({ nome, telefone, departamento });
     const salvoAdolescente = await novoAdolescente.save();
     res.status(201).json(salvoAdolescente);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    console.error(error);
+    res.status(500).json({ message: 'Erro ao criar o Adolescente.' });
   }
 };
 
@@ -17,39 +25,64 @@ exports.getAll = async (req, res) => {
     const adolescentes = await Adolescente.find();
     res.status(200).json(adolescentes);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error(error);
+    res.status(500).json({ message: 'Erro ao obter Adolescentes.' });
   }
 };
 
 // Obter um adolescente por ID
 exports.getById = async (req, res) => {
   try {
-    const adolescente = await Adolescente.findById(req.params.id);
-    if (!adolescente) return res.status(404).json({ error: 'Adolescente não encontrado' });
+    const { id } = req.params;
+    const adolescente = await Adolescente.findById(id);
+
+    if (!adolescente) {
+      return res.status(404).json({ message: 'Adolescente não encontrado.' });
+    }
+
     res.status(200).json(adolescente);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error(error);
+    res.status(500).json({ message: 'Erro ao obter Adolescente.' });
   }
 };
 
 // Atualizar um adolescente por ID
 exports.updateById = async (req, res) => {
   try {
-    const atualizadoAdolescente = await Adolescente.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!atualizadoAdolescente) return res.status(404).json({ error: 'Adolescente não encontrado' });
+    const { id } = req.params;
+    const { nome, telefone, departamento } = req.body;
+
+    const atualizadoAdolescente = await Adolescente.findByIdAndUpdate(
+      id,
+      { nome, telefone, departamento },
+      { new: true }
+    );
+
+    if (!atualizadoAdolescente) {
+      return res.status(404).json({ message: 'Adolescente não encontrado.' });
+    }
+
     res.status(200).json(atualizadoAdolescente);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    console.error(error);
+    res.status(500).json({ message: 'Erro ao atualizar Adolescente.' });
   }
 };
 
 // Deletar um adolescente por ID
 exports.deleteById = async (req, res) => {
   try {
-    const deletadoAdolescente = await Adolescente.findByIdAndDelete(req.params.id);
-    if (!deletadoAdolescente) return res.status(404).json({ error: 'Adolescente não encontrado' });
-    res.status(204).json();
+    const { id } = req.params;
+    const deletadoAdolescente = await Adolescente.findByIdAndDelete(id);
+
+    if (!deletadoAdolescente) {
+      return res.status(404).json({ message: 'Adolescente não encontrado.' });
+    }
+
+    res.status(204).json({ message: 'Adolescente deletado com sucesso.' });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error(error);
+    res.status(500).json({ message: 'Erro ao deletar Adolescente.' });
   }
 };
