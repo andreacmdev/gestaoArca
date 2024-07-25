@@ -1,15 +1,18 @@
 const express = require('express');
-const connectToDatabase = require('./config/database'); // Ajuste o caminho conforme necessário
-
 const app = express();
+const connectToDatabase = require('./config/database');
+const adolescenteRoutes = require('./routes/Adolescentes');
+const visitanteRoutes = require('./routes/Visitantes');
+const eventoRoutes = require('./routes/Eventos');
 
-// Conectar ao MongoDB
-connectToDatabase();
-
-// Configurações e rotas do Express
 app.use(express.json());
 
-// Porta do servidor
+connectToDatabase();
+
+app.use('/adolescentes', adolescenteRoutes);
+app.use('/visitantes', visitanteRoutes);
+app.use('/eventos', eventoRoutes);
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
