@@ -4,7 +4,7 @@ import { getEventos, createEvento } from '../services/EventoService';
 const EventoPage = () => {
   const [eventos, setEventos] = useState([]);
   const [nome, setNome] = useState('');
-  const [data, setData] = useState('');
+  const [date, setData] = useState('');
   const [totalPessoas, setTotalPessoas] = useState(0);
   const [totalConvertidos, setTotalConvertidos] = useState(0);
   const [totalBatizados, setTotalBatizados] = useState(0);
@@ -26,7 +26,7 @@ const EventoPage = () => {
     try {
       const evento = {
         nome,
-        data,
+        date,
         totalPessoas,
         totalConvertidos,
         totalBatizados,
@@ -57,7 +57,7 @@ const EventoPage = () => {
         <input
           type="date"
           placeholder="Data"
-          value={data}
+          value={date}
           onChange={(e) => setData(e.target.value)}
         />
         <input
