@@ -1,0 +1,56 @@
+/* NavBar.css */
+
+.navbar {
+  display: flex;
+  justify-content: flex-start; /* Posiciona o conteúdo no final (direita) */
+  background-color: #333;
+  padding: 10px;
+  position: relative;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  margin-left: auto; /* Garante que o botão esteja alinhado à direita */
+}
+
+.nav-menu {
+  display: none;
+  position: absolute;
+  right: 5; /* Posiciona o menu à direita */
+  top: 100%; /* Faz com que o menu apareça abaixo do botão */
+  background-color: #333;
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nav-menu.active {
+  display: block; /* Mostra o menu quando a classe 'active' está presente */
+}
+
+.nav-menu li {
+  margin: 10px 0;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.nav-menu a:hover {
+  text-decoration: underline;
+}

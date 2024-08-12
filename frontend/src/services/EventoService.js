@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/eventos';
+const API_URL = 'http://localhost:5000/eventos';
 
 export const getEventos = async () => {
   try {

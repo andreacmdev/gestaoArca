@@ -5,6 +5,9 @@ const adolescenteRoutes = require('./routes/Adolescentes');
 const visitanteRoutes = require('./routes/Visitantes');
 const eventoRoutes = require('./routes/Eventos');
 
+const cors = require('cors');
+app.use(cors());
+
 app.use(express.json());
 
 connectToDatabase();

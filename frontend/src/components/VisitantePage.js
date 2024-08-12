@@ -3,7 +3,7 @@ import { getVisitantes, createVisitante } from '../services/VisitanteService';
 
 const VisitantePage = () => {
   const [visitantes, setVisitantes] = useState([]);
-  const [nome, setNome] = useState('');
+  const [nomeCompleto, setNomeCompleto] = useState('');
   const [telefone, setTelefone] = useState('');
 
   useEffect(() => {
@@ -21,10 +21,10 @@ const VisitantePage = () => {
 
   const handleAddVisitante = async () => {
     try {
-      const visitante = { nome, telefone };
+      const visitante = { nomeCompleto, telefone };
       const data = await createVisitante(visitante);
       setVisitantes([...visitantes, data]);
-      setNome('');
+      setNomeCompleto('');
       setTelefone('');
     } catch (error) {
       console.error('Erro ao adicionar visitante:', error);
@@ -39,8 +39,8 @@ const VisitantePage = () => {
         <input
           type="text"
           placeholder="Nome"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
+          value={nomeCompleto}
+          onChange={(e) => setNomeCompleto(e.target.value)}
         />
         <input
           type="text"

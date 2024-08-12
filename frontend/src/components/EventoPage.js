@@ -4,7 +4,8 @@ import { getEventos, createEvento } from '../services/EventoService';
 const EventoPage = () => {
   const [eventos, setEventos] = useState([]);
   const [nome, setNome] = useState('');
-  const [date, setData] = useState('');
+  const [descricao, setDescricao] = useState(''); // Novo estado para a descrição
+  const [data, setData] = useState('');
   const [totalPessoas, setTotalPessoas] = useState(0);
   const [totalConvertidos, setTotalConvertidos] = useState(0);
   const [totalBatizados, setTotalBatizados] = useState(0);
@@ -15,8 +16,8 @@ const EventoPage = () => {
 
   const fetchEventos = async () => {
     try {
-      const data = await getEventos();
-      setEventos(data);
+      const eventosData = await getEventos();
+      setEventos(eventosData);
     } catch (error) {
       console.error('Erro ao buscar eventos:', error);
     }
@@ -26,14 +27,16 @@ const EventoPage = () => {
     try {
       const evento = {
         nome,
-        date,
+        descricao, // Incluindo o campo descricao
+        data,
         totalPessoas,
         totalConvertidos,
         totalBatizados,
       };
-      const data = await createEvento(evento);
-      setEventos([...eventos, data]);
+      const eventoCriado = await createEvento(evento);
+      setEventos([...eventos, eventoCriado]);
       setNome('');
+      setDescricao(''); // Limpando o campo descricao após adicionar
       setData('');
       setTotalPessoas(0);
       setTotalConvertidos(0);
@@ -55,9 +58,15 @@ const EventoPage = () => {
           onChange={(e) => setNome(e.target.value)}
         />
         <input
+          type="text"
+          placeholder="Descrição do Evento" // Novo input para a descrição
+          value={descricao}
+          onChange={(e) => setDescricao(e.target.value)}
+        />
+        <input
           type="date"
           placeholder="Data"
-          value={date}
+          value={data}
           onChange={(e) => setData(e.target.value)}
         />
         <input
@@ -84,7 +93,7 @@ const EventoPage = () => {
       <ul>
         {eventos.map((evento) => (
           <li key={evento._id}>
-            {evento.nome} - {evento.data} - Total de Pessoas: {evento.totalPessoas} - Convertidos: {evento.totalConvertidos} - Batizados: {evento.totalBatizados}
+            {evento.nome} - {evento.descricao} - {evento.data} - Total de Pessoas: {evento.totalPessoas} - Convertidos: {evento.totalConvertidos} - Batizados: {evento.totalBatizados}
           </li>
         ))}
       </ul>
