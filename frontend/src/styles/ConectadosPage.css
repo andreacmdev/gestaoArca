@@ -1,0 +1,20 @@
+.conectados-page {
+    padding: 20px;
+  }
+  
+  .grupo {
+    margin-bottom: 20px;
+  }
+  
+  .membro-lista {
+    list-style-type: none;
+  }
+  
+  .membro-lista li {
+    margin: 5px 0;
+  }
+  
+  .presenca-button {
+    margin-left: 10px;
+  }
+  

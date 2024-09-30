@@ -8,6 +8,7 @@ import AdolescentePage from './components/AdolescentePage';
 import VisitantePage from './components/VisitantePage';
 import EventoPage from './components/EventoPage';
 import NavBar from './components/NavBar';
+import ConectadosPage from './components/ConectadosPage';
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
             <Route path="/adolescentes" element={<AdolescentePage />} />
             <Route path="/visitantes" element={<VisitantePage />} />
             <Route path="/eventos" element={<EventoPage />} />
-            {/* Adicionar mais rotas conforme necessário */}
+            {<Route path="/conectados" component={ConectadosPage} />
+          }
           </Routes>
         </main>
         <footer className="App-footer">

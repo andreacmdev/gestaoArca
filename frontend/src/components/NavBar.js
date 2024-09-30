@@ -1,6 +1,7 @@
-import React, { useState,  useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/NavBar.css'; // Se quiser estilizar o menu
+import '../styles/NavBar.css';
+
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
@@ -29,6 +30,7 @@ const NavBar = () => {
           <li><Link to="/adolescentes">Adolescentes</Link></li>
           <li><Link to="/visitantes">Visitantes</Link></li>
           <li><Link to="/eventos">Eventos</Link></li>
+          <li><Link to="/conectados">Conectados</Link></li> {/* Adiciona a nova rota aqui */}
         </ul>
       </div>
     </nav>
